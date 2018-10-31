@@ -5,6 +5,6 @@ namespace PoliticsAndWarAPIAccess.API.Interfaces
 {
   public interface ITradeHistoryAPI
   {
-    Task<TradeHistory> GetTradeHistory(string apiKey, Resources[] resources, int records = 10000);
+    Task<TradeHistoryResponse> GetTradeHistory(string apiKey, Resources[] resources, int records = 10000);
   }
 }

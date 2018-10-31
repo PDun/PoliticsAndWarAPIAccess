@@ -12,9 +12,9 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     public TradePriceAPI(IRestService _service) : base (_service)
     {
     }
-    public async Task<TradePrice> GetAlliance(Resources resource)
+    public async Task<TradePrice> GetTradePrice(Resources resource)
     {
-      return await this.service.Get<TradePrice>($"tradeprice/resource={resource.ToString("g")}");
+      return await this.service.Get<TradePrice>($"/tradeprice/resource={resource.ToString("g")}");
     }
   }
 }

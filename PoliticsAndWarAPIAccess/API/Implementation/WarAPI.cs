@@ -14,7 +14,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     }
     public async Task<WarResponse> GetWar(int id)
     {
-      return await this.service.Get<WarResponse>($"war/{id}");
+      return await this.service.Get<WarResponse>($"/war/{id}");
     }
   }
 }

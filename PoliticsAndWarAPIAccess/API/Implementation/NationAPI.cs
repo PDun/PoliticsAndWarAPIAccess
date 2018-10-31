@@ -14,7 +14,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     }
     public async Task<Nation> GetNation(int NationId)
     {
-      return await this.service.Get<Nation>($"nation/id={NationId}");
+      return await this.service.Get<Nation>($"/nation/id={NationId}");
     }
   }
 }

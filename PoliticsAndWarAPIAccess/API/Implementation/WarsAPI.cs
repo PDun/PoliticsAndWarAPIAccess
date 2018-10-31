@@ -14,7 +14,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     }
     public async Task<WarsResponse> GetWars(int limit)
     {
-      return await this.service.Get<WarsResponse>($"wars/{limit}");
+      return await this.service.Get<WarsResponse>($"/wars/{limit}");
     }
   }
 }

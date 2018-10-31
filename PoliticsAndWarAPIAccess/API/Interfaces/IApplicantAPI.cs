@@ -5,6 +5,6 @@ namespace PoliticsAndWarAPIAccess.API.Interfaces
 {
   public interface IApplicantAPI
   {
-    Task<ApplicantResponse> GetNation(int AllianceId);
+    Task<ApplicantResponse> GetApplicant(int AllianceId);
   }
 }

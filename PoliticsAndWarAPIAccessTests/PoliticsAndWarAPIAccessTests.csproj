@@ -82,6 +82,14 @@
   <ItemGroup>
     <Compile Include="API\Implementation\AllianceAPITests.cs" />
     <Compile Include="API\Implementation\AlliancesAPITests.cs" />
+    <Compile Include="API\Implementation\ApplicantAPITests.cs" />
+    <Compile Include="API\Implementation\CityAPITests.cs" />
+    <Compile Include="API\Implementation\NationAPITests.cs" />
+    <Compile Include="API\Implementation\NationsAPITests.cs" />
+    <Compile Include="API\Implementation\TradeHistoryAPITests.cs" />
+    <Compile Include="API\Implementation\TradePriceAPITests.cs" />
+    <Compile Include="API\Implementation\WarAPITests.cs" />
+    <Compile Include="API\Implementation\WarsAPITests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

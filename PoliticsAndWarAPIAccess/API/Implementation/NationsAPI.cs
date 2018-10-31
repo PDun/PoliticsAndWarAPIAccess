@@ -16,9 +16,9 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     public NationsAPI(IRestService _service) : base (_service)
     {
     }
-    public async Task<NationsResponse> GetNations(int NationId)
+    public async Task<NationsResponse> GetNations()
     {
-      return await this.service.Get<NationsResponse>($"nations");
+      return await this.service.Get<NationsResponse>($"/nations/");
     }
   }
 }

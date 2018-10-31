@@ -5,6 +5,6 @@ namespace PoliticsAndWarAPIAccess.API.Interfaces
 {
   public interface INationsAPI
   {
-    Task<NationsResponse> GetNations(int NationId);
+    Task<NationsResponse> GetNations();
   }
 }

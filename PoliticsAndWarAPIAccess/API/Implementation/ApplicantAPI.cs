@@ -16,9 +16,9 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     public ApplicantAPI(IRestService _service) : base (_service)
     {
     }
-    public async Task<ApplicantResponse> GetNation(int AllianceId)
+    public async Task<ApplicantResponse> GetApplicant(int AllianceId)
     {
-      return await this.service.Get<ApplicantResponse>($"applicants/{AllianceId}");
+      return await this.service.Get<ApplicantResponse>($"/applicants/{AllianceId}");
     }
   }
 }

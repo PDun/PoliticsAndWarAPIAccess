@@ -50,7 +50,16 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var service = new AlliancesAPI(mockRestService.Object);
       var result = service.GetAlliances().Result;
       Assert.AreEqual(item,result);
-      mockRestService.Verify(x => x.Get<AlliancesResponse>(It.Is<string>(y => y == "alliances")));
+      mockRestService.Verify(x => x.Get<AlliancesResponse>(It.Is<string>(y => y == "/alliances/")));
+    }
+    [Test()]
+    [Category("Integration")]
+    public void GetAlliancesIntegrationTest()
+    {
+      var alliances = new AlliancesAPI();
+      var result = alliances.GetAlliances().Result;
+      Assert.IsNotNull(result);
+      Assert.IsNotEmpty(result.alliances);
     }
   }
 }

@@ -14,7 +14,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     }
     public async Task<City> GetCity(int CityId)
     {
-      return await this.service.Get<City>($"city/id={CityId}");
+      return await this.service.Get<City>($"/city/id={CityId}");
     }
   }
 }

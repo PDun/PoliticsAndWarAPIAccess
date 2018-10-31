@@ -18,7 +18,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     }
     public async Task<AlliancesResponse> GetAlliances()
     {
-      return await this.service.Get<AlliancesResponse>($"alliances");
+      return await this.service.Get<AlliancesResponse>($"/alliances/");
     }
   }
 }

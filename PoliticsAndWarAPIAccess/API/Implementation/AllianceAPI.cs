@@ -18,7 +18,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     }
     public async Task<Alliance> GetAlliance(int id)
     {
-      return await this.service.Get<Alliance>($"alliance/id={id}");
+      return await this.service.Get<Alliance>($"/alliance/id={id}");
     }
   }
 }
