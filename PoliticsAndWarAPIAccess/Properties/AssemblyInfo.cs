@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PoliticsAndWarAPIAccess")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("API access library for the Politics and War game")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("PDunny")]
 [assembly: AssemblyProduct("PoliticsAndWarAPIAccess")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
