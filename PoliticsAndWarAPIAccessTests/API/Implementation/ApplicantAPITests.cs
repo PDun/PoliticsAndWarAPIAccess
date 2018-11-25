@@ -58,8 +58,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     {
       var sut = new ApplicantAPI();
       var result = sut.GetApplicant(4124).Result;
-      Assert.IsNotNull(result);
-      Assert.IsNotEmpty(result.nations);
+      if (result.success)
+      {
+        Assert.IsNotNull(result);
+        Assert.IsNotEmpty(result.nations);
+      }
     }
   }
 }
