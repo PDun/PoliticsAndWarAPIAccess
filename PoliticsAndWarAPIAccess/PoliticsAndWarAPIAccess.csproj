@@ -51,6 +51,8 @@
     <Compile Include="API\Implementation\ApiBase.cs" />
     <Compile Include="API\Implementation\ApplicantAPI.cs" />
     <Compile Include="API\Implementation\CityAPI.cs" />
+    <Compile Include="API\Interfaces\IWarAttackAPI.cs" />
+    <Compile Include="API\Implementation\WarAttackAPI.cs" />
     <Compile Include="API\Interfaces\IWarsAPI.cs" />
     <Compile Include="API\Interfaces\IWarAPI.cs" />
     <Compile Include="API\Interfaces\ITradePriceAPI.cs" />
@@ -83,6 +85,8 @@
     <Compile Include="API\Models\TradePrice.cs" />
     <Compile Include="API\Models\TradePriceOffer.cs" />
     <Compile Include="API\Models\War.cs" />
+    <Compile Include="API\Models\WarAttack.cs" />
+    <Compile Include="API\Models\WarAttackResponse.cs" />
     <Compile Include="API\Models\WarResponse.cs" />
     <Compile Include="API\Models\Wars.cs" />
     <Compile Include="API\Models\WarsResponse.cs" />
