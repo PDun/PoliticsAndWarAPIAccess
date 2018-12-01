@@ -89,6 +89,7 @@
     <Compile Include="API\Implementation\TradeHistoryAPITests.cs" />
     <Compile Include="API\Implementation\TradePriceAPITests.cs" />
     <Compile Include="API\Implementation\WarAPITests.cs" />
+    <Compile Include="API\Implementation\WarAttackAPITests.cs" />
     <Compile Include="API\Implementation\WarsAPITests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

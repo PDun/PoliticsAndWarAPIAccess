@@ -46,11 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Implementation\AllCitiesAPI.cs" />
     <Compile Include="API\Implementation\AllianceAPI.cs" />
     <Compile Include="API\Implementation\AlliancesAPI.cs" />
     <Compile Include="API\Implementation\ApiBase.cs" />
     <Compile Include="API\Implementation\ApplicantAPI.cs" />
     <Compile Include="API\Implementation\CityAPI.cs" />
+    <Compile Include="API\Interfaces\INationMilitaryAPI.cs" />
+    <Compile Include="API\Implementation\NationMilitaryAPI.cs" />
+    <Compile Include="API\Interfaces\IAllCitiesAPI.cs" />
     <Compile Include="API\Interfaces\IWarAttackAPI.cs" />
     <Compile Include="API\Implementation\WarAttackAPI.cs" />
     <Compile Include="API\Interfaces\IWarsAPI.cs" />
@@ -71,13 +75,16 @@
     <Compile Include="API\Implementation\WarsAPI.cs" />
     <Compile Include="API\Interfaces\IRestService.cs" />
     <Compile Include="API\Implementation\RestService.cs" />
+    <Compile Include="API\Models\AllCity.cs" />
     <Compile Include="API\Models\Alliance.cs" />
     <Compile Include="API\Models\Alliances.cs" />
     <Compile Include="API\Models\AlliancesResponse.cs" />
     <Compile Include="API\Models\Applicant.cs" />
     <Compile Include="API\Models\ApplicantResponse.cs" />
     <Compile Include="API\Models\City.cs" />
+    <Compile Include="API\Models\AllCityResponse.cs" />
     <Compile Include="API\Models\Nation.cs" />
+    <Compile Include="API\Models\NationMilitary.cs" />
     <Compile Include="API\Models\Nations.cs" />
     <Compile Include="API\Models\NationsResponse.cs" />
     <Compile Include="API\Models\TradeHistory.cs" />
