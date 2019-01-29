@@ -41,11 +41,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     {
       Fixture fixture = new Fixture();
       var item = fixture.Create<WarsResponse>();
-      mockRestService.Setup(x => x.Get<WarsResponse>(It.IsAny<string>())).Returns(Task.FromResult(item));
+      mockRestService.Setup(x => x.Get<WarsResponse>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new WarsAPI(mockRestService.Object);
       var result = service.GetWars(1).Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<WarsResponse>(It.Is<string>(y => y == "/wars/1")));
+      mockRestService.Verify(x => x.Get<WarsResponse>(It.Is<string>(y => y == "/wars/1"), null));
     }
     [Test()]
     [Category("Integration")]

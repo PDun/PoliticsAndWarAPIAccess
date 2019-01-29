@@ -17,6 +17,9 @@ namespace PoliticsAndWarAPIAccess.API.Models
     public string ships { get; set; }
     public string missiles { get; set; }
     public string nukes { get; set; }
+    public string alliance { get; set; }
+    public int alliance_id { get; set; }
+    public int alliance_position { get; set; }
   }
   public class NationMilitaryResponse
   {

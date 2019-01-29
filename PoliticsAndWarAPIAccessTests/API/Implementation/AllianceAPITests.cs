@@ -46,11 +46,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     {
       Fixture fixture = new Fixture();
       var item = fixture.Create<Alliance>();
-      mockRestService.Setup(x => x.Get<Alliance>(It.IsAny<string>())).Returns(Task.FromResult(item));
+      mockRestService.Setup(x => x.Get<Alliance>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new AllianceAPI(mockRestService.Object);
       var result = service.GetAlliance(1).Result;
       Assert.AreEqual(item,result);
-      mockRestService.Verify(x => x.Get<Alliance>(It.Is<string>(y => y == "/alliance/id=1")));
+      mockRestService.Verify(x => x.Get<Alliance>(It.Is<string>(y => y == "/alliance/id=1"), null));
     }
     [Test()]
     [Category("Integration")]
