@@ -14,7 +14,7 @@
     public int cities { get; set; }
     public int offensivewars { get; set; }
     public int defensivewars { get; set; }
-    public int score { get; set; }
+    public double score { get; set; }
     public int rank { get; set; }
     public string vacmode { get; set; }
     public int minutessinceactive { get; set; }

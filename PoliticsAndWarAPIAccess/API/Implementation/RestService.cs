@@ -1,5 +1,7 @@
 ﻿using PoliticsAndWarAPIAccess.API.Interfaces;
 using RestSharp;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,9 +28,16 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     /// <typeparam name="T">Model for the response to be serialized to</typeparam>
     /// <param name="resource">resource for the request</param>
     /// <returns>Task of the generic type sent in</returns>
-    public async Task<T> Get<T>(string resource) where T : class, new()
+    public async Task<T> Get<T>(string resource, Dictionary<string,string> parameters = null) where T : class, new()
     {
       var request = new RestRequest(resource);
+      if (parameters != null && parameters.Any())
+      {
+        foreach (KeyValuePair<string,string> kvp in parameters)
+        {
+          request.AddQueryParameter(kvp.Key, kvp.Value);
+        }
+      }
       var cancellationTokenSource = new CancellationTokenSource();
       request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
       IRestResponse<T> response = await _client.ExecuteTaskAsync<T>(request, cancellationTokenSource.Token);

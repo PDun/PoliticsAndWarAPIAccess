@@ -41,11 +41,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     {
       Fixture fixture = new Fixture();
       var item = fixture.Create<TradeHistoryResponse>();
-      mockRestService.Setup(x => x.Get<TradeHistoryResponse>(It.IsAny<string>())).Returns(Task.FromResult(item));
+      mockRestService.Setup(x => x.Get<TradeHistoryResponse>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new TradeHistoryAPI(mockRestService.Object);
       var result = service.GetTradeHistory("test",new Resources[] { Resources.steel}).Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<TradeHistoryResponse>(It.Is<string>(y => y == "/trade-history/key=test&resources=steel&records=10000")));
+      mockRestService.Verify(x => x.Get<TradeHistoryResponse>(It.Is<string>(y => y == "/trade-history/key=test&resources=steel&records=10000"), null));
     }
 
     [Test()]
@@ -53,11 +53,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     {
       Fixture fixture = new Fixture();
       var item = fixture.Create<TradeHistoryResponse>();
-      mockRestService.Setup(x => x.Get<TradeHistoryResponse>(It.IsAny<string>())).Returns(Task.FromResult(item));
+      mockRestService.Setup(x => x.Get<TradeHistoryResponse>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new TradeHistoryAPI(mockRestService.Object);
       var result = service.GetTradeHistory("test", new Resources[] { Resources.steel, Resources.oil }).Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<TradeHistoryResponse>(It.Is<string>(y => y == "/trade-history/key=test&resources=steel,oil&records=10000")));
+      mockRestService.Verify(x => x.Get<TradeHistoryResponse>(It.Is<string>(y => y == "/trade-history/key=test&resources=steel,oil&records=10000"), null));
     }
 
     [Test()]
@@ -65,11 +65,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     {
       Fixture fixture = new Fixture();
       var item = fixture.Create<TradeHistoryResponse>();
-      mockRestService.Setup(x => x.Get<TradeHistoryResponse>(It.IsAny<string>())).Returns(Task.FromResult(item));
+      mockRestService.Setup(x => x.Get<TradeHistoryResponse>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new TradeHistoryAPI(mockRestService.Object);
       var result = service.GetTradeHistory("test", new Resources[] { Resources.steel, Resources.oil },500).Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<TradeHistoryResponse>(It.Is<string>(y => y == "/trade-history/key=test&resources=steel,oil&records=500")));
+      mockRestService.Verify(x => x.Get<TradeHistoryResponse>(It.Is<string>(y => y == "/trade-history/key=test&resources=steel,oil&records=500"), null));
     }
   }
 }

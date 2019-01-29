@@ -85,6 +85,7 @@
     <Compile Include="API\Implementation\ApplicantAPITests.cs" />
     <Compile Include="API\Implementation\CityAPITests.cs" />
     <Compile Include="API\Implementation\NationAPITests.cs" />
+    <Compile Include="API\Implementation\NationMilitaryAPITests.cs" />
     <Compile Include="API\Implementation\NationsAPITests.cs" />
     <Compile Include="API\Implementation\TradeHistoryAPITests.cs" />
     <Compile Include="API\Implementation\TradePriceAPITests.cs" />

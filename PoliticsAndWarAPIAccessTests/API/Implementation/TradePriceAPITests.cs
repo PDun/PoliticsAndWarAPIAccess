@@ -41,11 +41,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     {
       Fixture fixture = new Fixture();
       var item = fixture.Create<TradePrice>();
-      mockRestService.Setup(x => x.Get<TradePrice>(It.IsAny<string>())).Returns(Task.FromResult(item));
+      mockRestService.Setup(x => x.Get<TradePrice>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new TradePriceAPI(mockRestService.Object);
       var result = service.GetTradePrice(Resources.bauxite).Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<TradePrice>(It.Is<string>(y => y == "/tradeprice/resource=bauxite")));
+      mockRestService.Verify(x => x.Get<TradePrice>(It.Is<string>(y => y == "/tradeprice/resource=bauxite"), null));
     }
     [Test()]
     [Category("Integration")]
