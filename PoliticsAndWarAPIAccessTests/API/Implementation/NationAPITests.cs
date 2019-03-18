@@ -45,7 +45,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var service = new NationAPI(mockRestService.Object);
       var result = service.GetNation(4124, "test").Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<Nation>(It.Is<string>(y => y == "/nation/id=4124"), null));
+      mockRestService.Verify(x => x.Get<Nation>(It.Is<string>(y => y == "/nation/id=4124&key=test"), null));
     }
     [Test()]
     [Category("Integration")]

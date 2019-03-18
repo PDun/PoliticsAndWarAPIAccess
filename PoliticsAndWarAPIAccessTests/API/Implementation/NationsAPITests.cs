@@ -60,7 +60,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       Assert.AreEqual(item, result);
       mockRestService.Verify(x => x.Get<NationsResponse>(It.Is<string>(y => y == "/nations/"), 
           It.Is<Dictionary<string,string>>(
-            dict=> dict.First().Key == "vm" && dict.First().Value == "true")
+            dict=> dict.Any(z => z.Key == "vm" && z.Value == "true"))
         )
       );
     }
@@ -75,7 +75,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       Assert.AreEqual(item, result);
       mockRestService.Verify(x => x.Get<NationsResponse>(It.Is<string>(y => y == "/nations/"),
           It.Is<Dictionary<string, string>>(
-            dict => dict.First().Key == "alliance_id" && dict.First().Value == "148")
+            dict => dict.Any(z=> z.Key == "alliance_id" && z.Value == "148"))
         )
       );
     }

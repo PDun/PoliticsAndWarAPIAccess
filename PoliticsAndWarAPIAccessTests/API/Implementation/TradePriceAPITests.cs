@@ -45,7 +45,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var service = new TradePriceAPI(mockRestService.Object);
       var result = service.GetTradePrice(Resources.bauxite, "test").Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<TradePrice>(It.Is<string>(y => y == "/tradeprice/resource=bauxite"), null));
+      mockRestService.Verify(x => x.Get<TradePrice>(It.Is<string>(y => y == "/tradeprice/resource=bauxite&key=test"), null));
     }
     [Test()]
     [Category("Integration")]
