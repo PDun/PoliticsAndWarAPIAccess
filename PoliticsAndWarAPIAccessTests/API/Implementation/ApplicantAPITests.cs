@@ -48,16 +48,16 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var item = fixture.Create<ApplicantResponse>();
       mockRestService.Setup(x => x.Get<ApplicantResponse>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new ApplicantAPI(mockRestService.Object);
-      var result = service.GetApplicant(4124).Result;
+      var result = service.GetApplicant(4124, "test").Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<ApplicantResponse>(It.Is<string>(y => y == "/applicants/4124"), null));
+      mockRestService.Verify(x => x.Get<ApplicantResponse>(It.Is<string>(y => y == "/applicants/4124/?key=test"), null));
     }
     [Test()]
     [Category("Integration")]
     public void GetApplicantIntegrationTest()
     {
       var sut = new ApplicantAPI();
-      var result = sut.GetApplicant(4124).Result;
+      var result = sut.GetApplicant(4124, "test").Result;
       if (result.success)
       {
         Assert.IsNotNull(result);

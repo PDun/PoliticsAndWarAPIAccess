@@ -12,9 +12,9 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     public CityAPI(IRestService _service) : base (_service)
     {
     }
-    public async Task<City> GetCity(int CityId)
+    public async Task<City> GetCity(int CityId,string apiKey)
     {
-      return await this.service.Get<City>($"/city/id={CityId}");
+      return await this.service.Get<City>($"/city/id={CityId}&key={apiKey}");
     }
   }
 }

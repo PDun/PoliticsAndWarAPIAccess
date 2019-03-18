@@ -5,6 +5,6 @@ namespace PoliticsAndWarAPIAccess.API.Interfaces
 {
   public interface IWarsAPI
   {
-    Task<WarsResponse> GetWars(int limit);
+    Task<WarsResponse> GetWars(int? limit, string apiKey);
   }
 }

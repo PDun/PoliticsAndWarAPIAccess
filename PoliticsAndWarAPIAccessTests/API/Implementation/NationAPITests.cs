@@ -43,16 +43,16 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var item = fixture.Create<Nation>();
       mockRestService.Setup(x => x.Get<Nation>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new NationAPI(mockRestService.Object);
-      var result = service.GetNation(4124).Result;
+      var result = service.GetNation(4124, "test").Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<Nation>(It.Is<string>(y => y == "/nation/id=4124"), null));
+      mockRestService.Verify(x => x.Get<Nation>(It.Is<string>(y => y == "/nation/id=4124&key=test"), null));
     }
     [Test()]
     [Category("Integration")]
     public void GetNationIntegrationTest()
     {
       var sut = new NationAPI();
-      var result = sut.GetNation(6).Result;
+      var result = sut.GetNation(6,"test").Result;
       Assert.IsNotNull(result);
     }
   }

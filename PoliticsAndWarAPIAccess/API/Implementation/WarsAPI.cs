@@ -1,5 +1,6 @@
 ﻿using PoliticsAndWarAPIAccess.API.Interfaces;
 using PoliticsAndWarAPIAccess.API.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PoliticsAndWarAPIAccess.API.Implementation
@@ -12,9 +13,16 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     public WarsAPI(IRestService _service) : base (_service)
     {
     }
-    public async Task<WarsResponse> GetWars(int limit)
+    public async Task<WarsResponse> GetWars(int? limit,string apiKey)
     {
-      return await this.service.Get<WarsResponse>($"/wars/{limit}");
+
+      Dictionary<string, string> parameters = new Dictionary<string, string>();
+      parameters.Add("key", apiKey);
+      if (limit != null && limit.HasValue)
+      {
+        parameters.Add("limit", limit.Value.ToString());
+      }
+      return await this.service.Get<WarsResponse>($"/wars/",parameters);
     }
   }
 }

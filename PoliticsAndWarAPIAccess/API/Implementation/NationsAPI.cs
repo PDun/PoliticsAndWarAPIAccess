@@ -16,9 +16,10 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     public NationsAPI(IRestService _service) : base (_service)
     {
     }
-    public async Task<NationsResponse> GetNations(bool? vm = null, int? allianceId = null, int? min_score = null, int? max_score = null)
+    public async Task<NationsResponse> GetNations(string apiKey,bool? vm = null, int? allianceId = null, int? min_score = null, int? max_score = null)
     {
       Dictionary<string, string> parameters = new Dictionary<string, string>();
+      parameters.Add("key", apiKey);
       if (vm != null && vm.HasValue)
       {
         parameters.Add("vm", vm.Value.ToString().ToLower());
@@ -35,6 +36,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
       {
         parameters.Add("max_score", max_score.Value.ToString());
       }
+
       return await this.service.Get<NationsResponse>($"/nations/", parameters);
     }
   }
