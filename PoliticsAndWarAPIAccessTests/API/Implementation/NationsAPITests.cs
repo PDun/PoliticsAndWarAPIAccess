@@ -45,7 +45,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var item = fixture.Create<NationsResponse>();
       mockRestService.Setup(x => x.Get<NationsResponse>(It.IsAny<string>(), It.IsAny<Dictionary<string,string>>())).Returns(Task.FromResult(item));
       var service = new NationsAPI(mockRestService.Object);
-      var result = service.GetNations().Result;
+      var result = service.GetNations("test").Result;
       Assert.AreEqual(item, result);
       mockRestService.Verify(x => x.Get<NationsResponse>(It.Is<string>(y => y == "/nations/"), It.IsAny<Dictionary<string, string>>()));
     }
@@ -56,7 +56,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var item = fixture.Create<NationsResponse>();
       mockRestService.Setup(x => x.Get<NationsResponse>(It.IsAny<string>(), It.IsAny<Dictionary<string, string>>())).Returns(Task.FromResult(item));
       var service = new NationsAPI(mockRestService.Object);
-      var result = service.GetNations(vm: true).Result;
+      var result = service.GetNations("test",vm: true).Result;
       Assert.AreEqual(item, result);
       mockRestService.Verify(x => x.Get<NationsResponse>(It.Is<string>(y => y == "/nations/"), 
           It.Is<Dictionary<string,string>>(
@@ -71,7 +71,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var item = fixture.Create<NationsResponse>();
       mockRestService.Setup(x => x.Get<NationsResponse>(It.IsAny<string>(), It.IsAny<Dictionary<string, string>>())).Returns(Task.FromResult(item));
       var service = new NationsAPI(mockRestService.Object);
-      var result = service.GetNations(allianceId: 148).Result;
+      var result = service.GetNations("test",allianceId: 148).Result;
       Assert.AreEqual(item, result);
       mockRestService.Verify(x => x.Get<NationsResponse>(It.Is<string>(y => y == "/nations/"),
           It.Is<Dictionary<string, string>>(
@@ -84,7 +84,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     public void GetNationsIntegrationTest()
     {
       var sut = new NationsAPI();
-      var result = sut.GetNations().Result;
+      var result = sut.GetNations( "test").Result;
       Assert.IsNotNull(result);
       Assert.IsNotEmpty(result.nations);
     }
@@ -93,7 +93,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     public void GetNationsIntegrationVmsTest()
     {
       var sut = new NationsAPI();
-      var result = sut.GetNations(vm: true).Result;
+      var result = sut.GetNations("test",vm: true).Result;
       Assert.IsNotNull(result);
       Assert.IsNotEmpty(result.nations);
       Assert.IsTrue(result.nations.Any(x => x.vacmode != "0"));
@@ -103,7 +103,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     public void GetNationsIntegrationminScoreTest()
     {
       var sut = new NationsAPI();
-      var result = sut.GetNations(min_score: 1000).Result;
+      var result = sut.GetNations("test",min_score: 1000).Result;
       Assert.IsNotNull(result);
       Assert.IsNotEmpty(result.nations);
       Assert.IsTrue(result.nations.All(x => x.score >= 1000));
@@ -113,7 +113,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     public void GetNationsIntegrationMaxScoreTest()
     {
       var sut = new NationsAPI();
-      var result = sut.GetNations(max_score: 1000).Result;
+      var result = sut.GetNations("test",max_score: 1000).Result;
       Assert.IsNotNull(result);
       Assert.IsNotEmpty(result.nations);
       Assert.IsTrue(result.nations.All(x => x.score <= 1000));
@@ -123,7 +123,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     public void GetNationsIntegrationAllianceScoreTest()
     {
       var sut = new NationsAPI();
-      var result = sut.GetNations(allianceId: 0).Result;
+      var result = sut.GetNations("test",allianceId: 0).Result;
       Assert.IsNotNull(result);
       Assert.IsNotEmpty(result.nations);
       Assert.IsTrue(result.nations.All(x => x.allianceid == 0));

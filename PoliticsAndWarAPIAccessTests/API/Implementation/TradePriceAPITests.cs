@@ -43,7 +43,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var item = fixture.Create<TradePrice>();
       mockRestService.Setup(x => x.Get<TradePrice>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new TradePriceAPI(mockRestService.Object);
-      var result = service.GetTradePrice(Resources.bauxite).Result;
+      var result = service.GetTradePrice(Resources.bauxite, "test").Result;
       Assert.AreEqual(item, result);
       mockRestService.Verify(x => x.Get<TradePrice>(It.Is<string>(y => y == "/tradeprice/resource=bauxite"), null));
     }
@@ -52,7 +52,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     public void GetTradePriceIntegrationTest()
     {
       var sut = new TradePriceAPI();
-      var result = sut.GetTradePrice(Resources.steel).Result;
+      var result = sut.GetTradePrice(Resources.steel, "test").Result;
       Assert.IsNotNull(result);
     }
   }

@@ -5,6 +5,6 @@ namespace PoliticsAndWarAPIAccess.API.Interfaces
 {
   public interface INationsAPI
   {
-    Task<NationsResponse> GetNations(bool? vm = null, int? allianceId = null, int? min_score = null, int? max_score = null);
+    Task<NationsResponse> GetNations(string apiKey,bool? vm = null, int? allianceId = null, int? min_score = null, int? max_score = null);
   }
 }

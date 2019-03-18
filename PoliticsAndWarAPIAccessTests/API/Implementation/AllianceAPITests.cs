@@ -48,7 +48,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var item = fixture.Create<Alliance>();
       mockRestService.Setup(x => x.Get<Alliance>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new AllianceAPI(mockRestService.Object);
-      var result = service.GetAlliance(1).Result;
+      var result = service.GetAlliance(1,"test").Result;
       Assert.AreEqual(item,result);
       mockRestService.Verify(x => x.Get<Alliance>(It.Is<string>(y => y == "/alliance/id=1"), null));
     }
@@ -57,7 +57,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     public void GetAllianceIntegrationTest()
     {
       var alliances = new AllianceAPI();
-      var result = alliances.GetAlliance(4124).Result;
+      var result = alliances.GetAlliance(4124, "test").Result;
       Assert.IsNotNull(result);
     }
   }

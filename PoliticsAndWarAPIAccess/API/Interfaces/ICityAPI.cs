@@ -5,6 +5,6 @@ namespace PoliticsAndWarAPIAccess.API.Interfaces
 {
   public interface ICityAPI
   {
-    Task<City> GetCity(int CityId);
+    Task<City> GetCity(int CityId, string apiKey);
   }
 }

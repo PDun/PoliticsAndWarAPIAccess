@@ -5,6 +5,6 @@ namespace PoliticsAndWarAPIAccess.API.Interfaces
 {
   public interface IAllianceAPI
   {
-    Task<Alliance> GetAlliance(int id);
+    Task<Alliance> GetAlliance(int id, string apiKey);
   }
 }

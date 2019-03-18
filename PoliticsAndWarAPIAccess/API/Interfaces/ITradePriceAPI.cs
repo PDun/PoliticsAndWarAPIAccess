@@ -5,6 +5,6 @@ namespace PoliticsAndWarAPIAccess.API.Interfaces
 {
   public interface ITradePriceAPI
   {
-    Task<TradePrice> GetTradePrice(Resources resource);
+    Task<TradePrice> GetTradePrice(Resources resource, string apiKey);
   }
 }

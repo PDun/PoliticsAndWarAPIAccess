@@ -16,9 +16,9 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     public AllianceAPI(IRestService _service) : base (_service)
     {
     }
-    public async Task<Alliance> GetAlliance(int id)
+    public async Task<Alliance> GetAlliance(int id,string apikey)
     {
-      return await this.service.Get<Alliance>($"/alliance/id={id}");
+      return await this.service.Get<Alliance>($"/alliance/id={id}&key={apikey}");
     }
   }
 }

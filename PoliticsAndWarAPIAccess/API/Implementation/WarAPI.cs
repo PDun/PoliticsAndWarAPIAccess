@@ -12,9 +12,9 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     public WarAPI(IRestService _service) : base (_service)
     {
     }
-    public async Task<WarResponse> GetWar(int id)
+    public async Task<WarResponse> GetWar(int id,string apiKey)
     {
-      return await this.service.Get<WarResponse>($"/war/{id}");
+      return await this.service.Get<WarResponse>($"/war/{id}/?key={apiKey}");
     }
   }
 }

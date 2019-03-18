@@ -43,7 +43,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var item = fixture.Create<WarsResponse>();
       mockRestService.Setup(x => x.Get<WarsResponse>(It.IsAny<string>(), null)).Returns(Task.FromResult(item));
       var service = new WarsAPI(mockRestService.Object);
-      var result = service.GetWars(1).Result;
+      var result = service.GetWars(1,"test").Result;
       Assert.AreEqual(item, result);
       mockRestService.Verify(x => x.Get<WarsResponse>(It.Is<string>(y => y == "/wars/1"), null));
     }
@@ -52,7 +52,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
     public void GetWarsIntegrationTest()
     {
       var sut = new WarsAPI();
-      var result = sut.GetWars(355250).Result;
+      var result = sut.GetWars(355250, "test").Result;
       Assert.IsNotNull(result);
     }
   }

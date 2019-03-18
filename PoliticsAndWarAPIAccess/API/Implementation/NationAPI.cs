@@ -12,9 +12,9 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     public NationAPI(IRestService _service) : base (_service)
     {
     }
-    public async Task<Nation> GetNation(int NationId)
+    public async Task<Nation> GetNation(int NationId,string apiKey)
     {
-      return await this.service.Get<Nation>($"/nation/id={NationId}");
+      return await this.service.Get<Nation>($"/nation/id={NationId}&key={apiKey}");
     }
   }
 }

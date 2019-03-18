@@ -16,9 +16,9 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     public AlliancesAPI(IRestService _service) : base (_service)
     {
     }
-    public async Task<AlliancesResponse> GetAlliances()
+    public async Task<AlliancesResponse> GetAlliances(string apiKey)
     {
-      return await this.service.Get<AlliancesResponse>($"/alliances/");
+      return await this.service.Get<AlliancesResponse>($"/alliances/?key={apiKey}");
     }
   }
 }
