@@ -50,7 +50,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var service = new ApplicantAPI(mockRestService.Object);
       var result = service.GetApplicant(4124, "test").Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<ApplicantResponse>(It.Is<string>(y => y == "/applicants/4124/?key=test"), null));
+      mockRestService.Verify(x => x.Get<ApplicantResponse>(It.Is<string>(y => y == "/applicants/4124&key=test"), null));
     }
     [Test()]
     [Category("Integration")]

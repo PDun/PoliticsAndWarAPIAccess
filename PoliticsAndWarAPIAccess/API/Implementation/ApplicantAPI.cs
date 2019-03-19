@@ -18,7 +18,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
     }
     public async Task<ApplicantResponse> GetApplicant(int AllianceId,string apiKey)
     {
-      return await this.service.Get<ApplicantResponse>($"/applicants/{AllianceId}/?key={apiKey}");
+      return await this.service.Get<ApplicantResponse>($"/applicants/{AllianceId}&key={apiKey}");
     }
   }
 }
