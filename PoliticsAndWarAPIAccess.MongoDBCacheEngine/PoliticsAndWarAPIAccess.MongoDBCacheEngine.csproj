@@ -13,8 +13,6 @@
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\PoliticsAndWarAPIAccess\PoliticsAndWarAPIAccess.csproj" />
+      <PackageReference Include="PoliticsAndWarAPIAccess" Version="1.0.56" />
     </ItemGroup>
 </Project>

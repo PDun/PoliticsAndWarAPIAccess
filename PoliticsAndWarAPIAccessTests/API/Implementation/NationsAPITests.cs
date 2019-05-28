@@ -79,54 +79,5 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
         )
       );
     }
-    [Test()]
-    [Category("Integration")]
-    public void GetNationsIntegrationTest()
-    {
-      var sut = new NationsAPI();
-      var result = sut.GetNations( "test").Result;
-      Assert.IsNotNull(result);
-      Assert.IsNotEmpty(result.nations);
-    }
-    [Test()]
-    [Category("Integration")]
-    public void GetNationsIntegrationVmsTest()
-    {
-      var sut = new NationsAPI();
-      var result = sut.GetNations("test",vm: true).Result;
-      Assert.IsNotNull(result);
-      Assert.IsNotEmpty(result.nations);
-      Assert.IsTrue(result.nations.Any(x => x.vacmode != "0"));
-    }
-    [Test()]
-    [Category("Integration")]
-    public void GetNationsIntegrationminScoreTest()
-    {
-      var sut = new NationsAPI();
-      var result = sut.GetNations("test",min_score: 1000).Result;
-      Assert.IsNotNull(result);
-      Assert.IsNotEmpty(result.nations);
-      Assert.IsTrue(result.nations.All(x => x.score >= 1000));
-    }
-    [Test()]
-    [Category("Integration")]
-    public void GetNationsIntegrationMaxScoreTest()
-    {
-      var sut = new NationsAPI();
-      var result = sut.GetNations("test",max_score: 1000).Result;
-      Assert.IsNotNull(result);
-      Assert.IsNotEmpty(result.nations);
-      Assert.IsTrue(result.nations.All(x => x.score <= 1000));
-    }
-    [Test()]
-    [Category("Integration")]
-    public void GetNationsIntegrationAllianceScoreTest()
-    {
-      var sut = new NationsAPI();
-      var result = sut.GetNations("test",allianceId: 0).Result;
-      Assert.IsNotNull(result);
-      Assert.IsNotEmpty(result.nations);
-      Assert.IsTrue(result.nations.All(x => x.allianceid == 0));
-    }
   }
 }
