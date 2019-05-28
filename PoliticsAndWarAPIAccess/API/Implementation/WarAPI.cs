@@ -30,7 +30,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
                 }
                 else
                 {
-                    cache = await _cacheEngine.FindAsync(x=> x._id == id).ToList();
+                    cache = await _cacheEngine.FindAsync(x=> x._id == id);
                 }
                 if (cache.Any())
                     return new WarResponse() { success = true, war = cache.ToList() };
