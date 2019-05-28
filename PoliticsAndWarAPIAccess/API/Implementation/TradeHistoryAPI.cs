@@ -27,11 +27,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
                 IEnumerable<TradeHistory> cache;
                 if (expression != null)
                 {
-                    cache = (await _cacheEngine.FindAsync(expression)).Where(x => resources.Any(y => y.ToString().Equals(x.resource, StringComparison.InvariantCultureIgnoreCase))).Take(records);
+                    cache = (await _cacheEngine.FindAsync(expression)).ToList().Where(x => resources.Any(y => y.ToString().Equals(x.resource, StringComparison.InvariantCultureIgnoreCase))).Take(records);
                 }
                 else
                 {
-                    cache = (await _cacheEngine.GetAllAsync()).Where(x=> resources.Any(y=> y.ToString().Equals(x.resource, StringComparison.InvariantCultureIgnoreCase))).Take(records);
+                    cache = (await _cacheEngine.GetAllAsync()).ToList().Where(x=> resources.Any(y=> y.ToString().Equals(x.resource, StringComparison.InvariantCultureIgnoreCase))).Take(records);
                 }
                 if (cache.Any())
                     return new TradeHistoryResponse() { success = true, trades = cache.ToList() };
