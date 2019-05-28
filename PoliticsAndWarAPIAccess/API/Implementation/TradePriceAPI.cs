@@ -30,10 +30,10 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
                 }
                 else
                 {
-                    cache = await _cacheEngine.FindAsync(x=> x.resource.Equals(resource.ToString(),StringComparison.InvariantCultureIgnoreCase)).ToList();
+                    cache = await _cacheEngine.FindAsync(x=> x.resource.Equals(resource.ToString(),StringComparison.InvariantCultureIgnoreCase));
                 }
                 if (cache.Any())
-                    return cache.OrderByDescending(x=> x.CreatedDate).FirstOrDefault();
+                    return cache.ToList().OrderByDescending(x=> x.CreatedDate).FirstOrDefault();
             }
             var result = await this.service.Get<TradePrice>($"/tradeprice/resource={resource.ToString("g")}&key={apiKey}");
             if (_cacheEngine != null && result != null)
