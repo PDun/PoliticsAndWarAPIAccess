@@ -59,7 +59,7 @@ namespace PoliticsAndWarAPIAccess.MongoDBCacheEngine
                 }
                 return true;
             }
-            return false; ;
+            return false;
         }
         public void DeleteFromCache(Expression<Func<T, bool>> expr)
         {
