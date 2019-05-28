@@ -45,7 +45,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation.Tests
       var service = new WarAPI(mockRestService.Object);
       var result = service.GetWar(1, "test").Result;
       Assert.AreEqual(item, result);
-      mockRestService.Verify(x => x.Get<WarResponse>(It.Is<string>(y => y == "/war/1/?key=test"), null));
+      mockRestService.Verify(x => x.Get<WarResponse>(It.Is<string>(y => y == "/war/1&key=test"), null));
     }
   }
 }
