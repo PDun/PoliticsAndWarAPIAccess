@@ -27,11 +27,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
                 IEnumerable<Nations> cache;
                 if (expression != null)
                 {
-                    cache = (await _cacheEngine.FindAsync(expression)).ToList();
+                    cache = (await _cacheEngine.FindAsync(expression));
                 }
                 else
                 {
-                    cache = (await _cacheEngine.GetAllAsync()).ToList();
+                    cache = (await _cacheEngine.GetAllAsync());
                 }
                 if (cache.Any())
                 {

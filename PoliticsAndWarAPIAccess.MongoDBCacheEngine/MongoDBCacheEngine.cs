@@ -69,31 +69,31 @@ namespace PoliticsAndWarAPIAccess.MongoDBCacheEngine
         public IEnumerable<T> Get(Expression<Func<T, bool>> expr)
         {
             var collection = database.GetCollection<T>(typeof(T).Name);
-            return collection.Find(expr).ToEnumerable();
+            return collection.Find(expr).ToList();
         }
         public IEnumerable<T> GetAll()
         {
             var collection = database.GetCollection<T>(typeof(T).Name);
-            return collection.Find(_ => true).ToEnumerable();
+            return collection.Find(_ => true).ToList();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             var collection = database.GetCollection<T>(typeof(T).Name);
             var result = await collection.FindAsync(x => x.CreatedDate > DateTime.Today.AddDays(-7));
-            return result.ToEnumerable();
+            return result.ToList();
         }
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> expr)
         {
             var collection = database.GetCollection<T>(typeof(T).Name);
             var result = await collection.FindAsync(expr);
-            return result.ToEnumerable();
+            return result.ToList();
         }
         public async Task<IEnumerable<T>> FindAsync(string collectionName, Expression<Func<T, bool>> expr)
         {
             var collection = database.GetCollection<T>(collectionName);
             var result = await collection.FindAsync(expr);
-            return result.ToEnumerable();
+            return result.ToList();
         }
         public async Task<int> GetMaxId()
         {
