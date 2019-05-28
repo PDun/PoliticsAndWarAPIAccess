@@ -16,5 +16,6 @@ namespace PoliticsAndWarAPIAccess.API.Models
         public string continent { get; set; }
         public int cities { get; set; }
         public int score { get; set; }
+        public int AllianceId { get; set; }
     }
 }

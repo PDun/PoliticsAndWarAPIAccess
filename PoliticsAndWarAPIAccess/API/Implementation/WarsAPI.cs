@@ -1,7 +1,10 @@
 ﻿using PoliticsAndWarAPIAccess.API.Interfaces;
 using PoliticsAndWarAPIAccess.API.Models;
 using PoliticsAndWarAPIAccess.Caching;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace PoliticsAndWarAPIAccess.API.Implementation
@@ -16,9 +19,26 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
         public WarsAPI(IRestService _service) : base(_service)
         {
         }
-        public async Task<WarsResponse> GetWars(int? limit, string apiKey)
+        public async Task<WarsResponse> GetWars(int? limit, string apiKey, Expression<Func<Wars, bool>> expression = null, bool UseCache = true)
         {
-
+            if (_cacheEngine != null && UseCache)
+            {
+                IEnumerable<Wars> cache;
+                if (expression != null)
+                {
+                    cache = await _cacheEngine.FindAsync(expression);
+                }
+                else
+                {
+                    cache = await _cacheEngine.GetAllAsync();
+                }
+                if (limit.HasValue)
+                {
+                    cache = cache.Take(limit.Value);
+                }
+                if (cache.Any())
+                    return new WarsResponse() { success = true, wars = cache.ToList() };
+            }
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("key", apiKey);
             if (limit != null && limit.HasValue)

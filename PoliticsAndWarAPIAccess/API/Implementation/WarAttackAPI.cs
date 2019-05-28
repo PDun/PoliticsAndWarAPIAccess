@@ -4,6 +4,7 @@ using PoliticsAndWarAPIAccess.Caching;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,8 +20,37 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
         public WarAttackAPI(IRestService _service) : base(_service)
         {
         }
-        public async Task<WarAttackResponse> GetWarAttack(string key, int warId = 0, int minWarAttackId = 0, int maxWarAttackId = 0)
+        public async Task<WarAttackResponse> GetWarAttack(string key, int warId = 0, int minWarAttackId = 0, int maxWarAttackId = 0, Expression<Func<WarAttack, bool>> expression = null, bool UseCache = true)
         {
+            if (_cacheEngine != null && UseCache)
+            {
+                IEnumerable<WarAttack> cache;
+                if (expression != null)
+                {
+                    cache = await _cacheEngine.FindAsync(expression);
+                }
+                else
+                {
+                    cache = await _cacheEngine.GetAllAsync();
+                }
+                if (warId > 0)
+                {
+                    cache = cache.Where(x=> int.Parse(x.war_id) == warId);
+                }
+                else
+                {
+                    if (minWarAttackId > 0)
+                    {
+                        cache = cache.Where(x=> minWarAttackId >= int.Parse(x.war_attack_id));
+                    }
+                    if (maxWarAttackId > 0)
+                    {
+                        cache = cache.Where(x => maxWarAttackId <= int.Parse(x.war_attack_id));
+                    }
+                }
+                if (cache.Any())
+                    return new WarAttackResponse() { success = true, war_attacks = cache.ToList() };
+            }
             string path = $"/war-attacks/key={key}";
             if (warId > 0)
             {

@@ -4,6 +4,7 @@ using PoliticsAndWarAPIAccess.Caching;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,8 +20,41 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
         public NationsAPI(IRestService _service) : base(_service)
         {
         }
-        public async Task<NationsResponse> GetNations(string apiKey, bool? vm = null, int? allianceId = null, int? min_score = null, int? max_score = null)
+        public async Task<NationsResponse> GetNations(string apiKey, bool? vm = null, int? allianceId = null, int? min_score = null, int? max_score = null, Expression<Func<Nations, bool>> expression = null, bool UseCache = true)
         {
+            if (_cacheEngine != null && UseCache)
+            {
+                IEnumerable<Nations> cache;
+                if (expression != null)
+                {
+                    cache = await _cacheEngine.FindAsync(expression);
+                }
+                else
+                {
+                    cache = await _cacheEngine.GetAllAsync();
+                }
+                if (cache.Any())
+                {
+                    
+                    if (vm != null && vm.HasValue)
+                    {
+                        cache = cache.Where(x => (x.vacmode == "0") == vm.Value );
+                    }
+                    if (allianceId != null && allianceId.HasValue)
+                    {
+                        cache = cache.Where(x => x.allianceid == allianceId.Value);
+                    }
+                    if (min_score != null && min_score.HasValue)
+                    {
+                        cache = cache.Where(x => x.score >= min_score.Value);
+                    }
+                    if (max_score != null && max_score.HasValue)
+                    {
+                        cache = cache.Where(x => x.score <= max_score.Value);
+                    }
+                    return new NationsResponse() { success = true, nations = cache.ToList() };
+                }
+            }
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("key", apiKey);
             if (vm != null && vm.HasValue)
