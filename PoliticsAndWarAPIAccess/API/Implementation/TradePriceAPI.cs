@@ -26,11 +26,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
                 IEnumerable<TradePrice> cache;
                 if (expression != null)
                 {
-                    cache = (await _cacheEngine.FindAsync(expression)).Where(x => x.resource.Equals(resource.ToString(), StringComparison.InvariantCultureIgnoreCase));
+                    cache = (await _cacheEngine.FindAsync(expression)).ToList().Where(x => x.resource.Equals(resource.ToString(), StringComparison.InvariantCultureIgnoreCase));
                 }
                 else
                 {
-                    cache = await _cacheEngine.FindAsync(x=> x.resource.Equals(resource.ToString(),StringComparison.InvariantCultureIgnoreCase));
+                    cache = await _cacheEngine.FindAsync(x=> x.resource.Equals(resource.ToString(),StringComparison.InvariantCultureIgnoreCase)).ToList();
                 }
                 if (cache.Any())
                     return cache.OrderByDescending(x=> x.CreatedDate).FirstOrDefault();

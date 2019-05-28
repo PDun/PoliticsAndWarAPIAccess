@@ -27,11 +27,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
                 IEnumerable<WarAttack> cache;
                 if (expression != null)
                 {
-                    cache = await _cacheEngine.FindAsync(expression);
+                    cache = (await _cacheEngine.FindAsync(expression)).ToList();
                 }
                 else
                 {
-                    cache = await _cacheEngine.GetAllAsync();
+                    cache = (await _cacheEngine.GetAllAsync()).ToList();
                 }
                 if (warId > 0)
                 {

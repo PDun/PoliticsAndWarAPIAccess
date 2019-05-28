@@ -26,11 +26,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
                 IEnumerable<War> cache;
                 if (expression != null)
                 {
-                    cache = (await _cacheEngine.FindAsync(expression)).Where(x=> x._id == id);
+                    cache = (await _cacheEngine.FindAsync(expression)).ToList().Where(x=> x._id == id);
                 }
                 else
                 {
-                    cache = await _cacheEngine.FindAsync(x=> x._id == id);
+                    cache = await _cacheEngine.FindAsync(x=> x._id == id).ToList();
                 }
                 if (cache.Any())
                     return new WarResponse() { success = true, war = cache.ToList() };
