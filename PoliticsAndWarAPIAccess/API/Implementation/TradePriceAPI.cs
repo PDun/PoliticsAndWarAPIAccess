@@ -26,14 +26,14 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
                 IEnumerable<TradePrice> cache;
                 if (expression != null)
                 {
-                    cache = (await _cacheEngine.FindAsync(expression)).ToList().Where(x => x.resource.Equals(resource.ToString(), StringComparison.InvariantCultureIgnoreCase));
+                    cache = (await _cacheEngine.FindAsync(expression)).Where(x => x.resource.Equals(resource.ToString(), StringComparison.InvariantCultureIgnoreCase));
                 }
                 else
                 {
                     cache = await _cacheEngine.FindAsync(x=> x.resource.Equals(resource.ToString(),StringComparison.InvariantCultureIgnoreCase));
                 }
                 if (cache.Any())
-                    return cache.ToList().OrderByDescending(x=> x.CreatedDate).FirstOrDefault();
+                    return cache.OrderByDescending(x=> x.CreatedDate).FirstOrDefault();
             }
             var result = await this.service.Get<TradePrice>($"/tradeprice/resource={resource.ToString("g")}&key={apiKey}");
             if (_cacheEngine != null && result != null)

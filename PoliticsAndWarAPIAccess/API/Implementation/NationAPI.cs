@@ -26,7 +26,7 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
                 IEnumerable<Nation> cache;
                 if (expression != null)
                 {
-                    cache = (await _cacheEngine.FindAsync(expression)).ToList().Where(x => x._id == NationId);
+                    cache = (await _cacheEngine.FindAsync(expression)).Where(x => x._id == NationId);
                 }
                 else
                 {
