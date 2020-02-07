@@ -27,11 +27,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
                 IEnumerable<TradeHistory> cache;
                 if (expression != null)
                 {
-                    cache = (await _cacheEngine.FindAsync(expression)).Where(x => resources.Any(y => y.ToString().Equals(x.resource, StringComparison.InvariantCultureIgnoreCase))).Take(records);
+                    cache = (await _cacheEngine.FindAsync(expression)).Where(x => resources.Any(y => y.ToString() == x.resource)).Take(records);
                 }
                 else
                 {
-                    cache = (await _cacheEngine.GetAllAsync()).Where(x=> resources.Any(y=> y.ToString().Equals(x.resource, StringComparison.InvariantCultureIgnoreCase))).Take(records);
+                    cache = (await _cacheEngine.GetAllAsync()).Where(x=> resources.Any(y=> y.ToString()== x.resource)).Take(records);
                 }
                 if (cache.Any())
                     return new TradeHistoryResponse() { success = true, trades = cache.ToList() };
@@ -39,6 +39,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
             var result = await this.service.Get<TradeHistoryResponse>($"/trade-history/key={apiKey}&resources={string.Join(",", resources.Select(x => x.ToString("g")))}&records={records}");
             if (_cacheEngine != null && result.success)
                 await _cacheEngine.Build(result.trades);
+            if (expression != null)
+            {
+                var compExpr = expression.Compile();
+                result.trades = result.trades.Where(x => compExpr(x)).ToList();
+            }
             return result;
         }
     }

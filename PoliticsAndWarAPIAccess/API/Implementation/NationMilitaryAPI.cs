@@ -39,6 +39,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
             var result = await this.service.Get<NationMilitaryResponse>($"/nation-military/key={apiKey}");
             if (_cacheEngine != null && result.success)
                 await _cacheEngine.Build(result.nation_militaries);
+            if (expression != null)
+            {
+                var compExpr = expression.Compile();
+                result.nation_militaries = result.nation_militaries.Where(x => compExpr(x)).ToList();
+            }
             return result;
         }
     }

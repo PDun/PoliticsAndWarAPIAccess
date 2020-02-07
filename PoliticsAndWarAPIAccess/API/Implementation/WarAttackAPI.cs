@@ -70,6 +70,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
             var result = await this.service.Get<WarAttackResponse>(path);
             if (_cacheEngine != null && result.success)
                 await _cacheEngine.Build(result.war_attacks);
+            if (expression != null)
+            {
+                var compExpr = expression.Compile();
+                result.war_attacks = result.war_attacks.Where(x => compExpr(x)).ToList();
+            }
             return result;
         }
     }

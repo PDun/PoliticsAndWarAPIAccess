@@ -77,6 +77,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
             var result = await this.service.Get<NationsResponse>($"/nations/", parameters);
             if (_cacheEngine != null && result.success)
                 await _cacheEngine.Build(result.nations);
+            if (expression != null)
+            {
+                var compExpr = expression.Compile();
+                result.nations = result.nations.Where(x => compExpr(x)).ToList();
+            }
             return result;
 
         }
