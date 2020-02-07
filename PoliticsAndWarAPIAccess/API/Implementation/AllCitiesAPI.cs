@@ -39,6 +39,13 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
             var result = await this.service.Get<AllCityResponse>($"/all-cities/key={apiKey}");
             if (_cacheEngine != null && result.success)
                 await _cacheEngine.Build(result.all_cities);
+
+
+            if (expression != null)
+            {
+                var compExpr = expression.Compile();
+                result.all_cities = result.all_cities.Where(x => compExpr(x)).ToList();
+            }
             return result;
         }
     }

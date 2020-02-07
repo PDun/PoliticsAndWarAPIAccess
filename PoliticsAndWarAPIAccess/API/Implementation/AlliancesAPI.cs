@@ -39,6 +39,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
             var result = await this.service.Get<AlliancesResponse>($"/alliances/?key={apiKey}");
             if (_cacheEngine != null && result.success)
                 await _cacheEngine.Build(result.alliances);
+            if (expression != null)
+            {
+                var compExpr = expression.Compile();
+                result.alliances = result.alliances.Where(x => compExpr(x)).ToList();
+            }
             return result;
         }
     }

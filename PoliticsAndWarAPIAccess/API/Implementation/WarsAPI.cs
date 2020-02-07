@@ -48,6 +48,11 @@ namespace PoliticsAndWarAPIAccess.API.Implementation
             var result = await this.service.Get<WarsResponse>($"/wars/", parameters);
             if (_cacheEngine != null && result.success)
                 await _cacheEngine.Build(result.wars);
+            if (expression != null)
+            {
+                var compExpr = expression.Compile();
+                result.wars = result.wars.Where(x => compExpr(x)).ToList();
+            }
             return result;
         }
     }
