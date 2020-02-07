@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
   <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
@@ -13,6 +13,8 @@
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
-      <PackageReference Include="PoliticsAndWarAPIAccess" Version="1.0.75" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\PoliticsAndWarAPIAccess\PoliticsAndWarAPIAccess.csproj" />
     </ItemGroup>
 </Project>
