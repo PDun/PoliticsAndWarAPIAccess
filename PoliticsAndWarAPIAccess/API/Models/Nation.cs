@@ -76,6 +76,11 @@ namespace PoliticsAndWarAPIAccess.API.Models
         public string uraniumenrich { get; set; }
         public string propbureau { get; set; }
         public string cenciveng { get; set; }
+        public string city_planning { get; set; }
+        public string adv_city_planning { get; set; }
+        public string space_program { get; set; }
+        public string spy_satellite { get; set; }
+        public string moon_landing { get; set; }
         public string vmode { get; set; }
         public int offensivewars { get; set; }
         public int defensivewars { get; set; }
