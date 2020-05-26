@@ -81,6 +81,10 @@ namespace PoliticsAndWarAPIAccess.API.Models
         public string space_program { get; set; }
         public string spy_satellite { get; set; }
         public string moon_landing { get; set; }
+        public string green_technologies { get; set; }
+        public string telecommunications_satellite { get; set; }
+        public string recycling_initiative { get; set; }
+        public string pirate_economy { get; set; }
         public string vmode { get; set; }
         public int offensivewars { get; set; }
         public int defensivewars { get; set; }
