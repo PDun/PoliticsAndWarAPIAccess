@@ -85,6 +85,10 @@ namespace PoliticsAndWarAPIAccess.API.Models
         public string telecommunications_satellite { get; set; }
         public string recycling_initiative { get; set; }
         public string pirate_economy { get; set; }
+        private string adv_engineering_corps { get; set; }
+        private string arable_land_agency { get; set; } 
+        private string specialized_police_training { get; set; }
+        private  string clinical_research_center { get; set; }
         public string vmode { get; set; }
         public int offensivewars { get; set; }
         public int defensivewars { get; set; }
